@@ -1,4 +1,365 @@
----
+---import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
+
+export default function App() {
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.logo}>
+          VYB<Text style={styles.logoO}>O</Text>
+        </Text>
+
+        <View style={styles.headerIcons}>
+          <Text style={styles.icon}>🔍</Text>
+          <Text style={styles.icon}>🔔</Text>
+        </View>
+      </View>
+
+      {/* Feed tabs */}
+      <View style={styles.tabs}>
+        <Text style={[styles.tab, styles.activeTab]}>For You</Text>
+        <Text style={styles.tab}>Following</Text>
+        <Text style={styles.tab}>Nearby</Text>
+        <Text style={styles.tab}>Global</Text>
+      </View>
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Stories */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.stories}
+        >
+          {["You", "Alex", "Bella", "Kim", "Sammy"].map((name, index) => (
+            <View style={styles.story} key={name}>
+              <View style={styles.storyCircle}>
+                <Text style={styles.storyEmoji}>
+                  {["➕", "😎", "😊", "🔥", "😁"][index]}
+                </Text>
+              </View>
+              <Text style={styles.storyName}>{name}</Text>
+            </View>
+          ))}
+        </ScrollView>
+
+        {/* Post */}
+        <View style={styles.post}>
+          <View style={styles.userRow}>
+            <View style={styles.avatar}>
+              <Text>😎</Text>
+            </View>
+
+            <View>
+              <Text style={styles.username}>Jayden</Text>
+              <Text style={styles.location}>Lagos, Nigeria</Text>
+            </View>
+
+            <Text style={styles.more}>•••</Text>
+          </View>
+
+          <View style={styles.photo}>
+            <Text style={styles.photoEmoji}>📸</Text>
+            <Text style={styles.photoText}>VYBO</Text>
+          </View>
+
+          <Text style={styles.caption}>
+            Good vibes only 🌴✨
+          </Text>
+
+          <Text style={styles.hashtags}>
+            #vybo #life #lagos
+          </Text>
+
+          <View style={styles.actions}>
+            <TouchableOpacity>
+              <Text style={styles.action}>❤️ 1.2K</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Text style={styles.action}>💬 128</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Text style={styles.action}>↗️ 32</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Text style={styles.bookmark}>🔖</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* Bottom Navigation */}
+      <View style={styles.bottomNav}>
+        <TouchableOpacity>
+          <Text style={styles.navActive}>⌂</Text>
+          <Text style={styles.navActiveText}>Home</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text style={styles.navIcon}>💬</Text>
+          <Text style={styles.navText}>Chats</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.plusButton}>
+          <Text style={styles.plus}>+</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text style={styles.navIcon}>♡</Text>
+          <Text style={styles.navText}>Vibes</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text style={styles.navIcon}>●</Text>
+          <Text style={styles.navText}>Profile</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#050509",
+  },
+
+  header: {
+    height: 65,
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  logo: {
+    color: "#FFFFFF",
+    fontSize: 28,
+    fontWeight: "900",
+    letterSpacing: 1,
+  },
+
+  logoO: {
+    color: "#9B3CFF",
+  },
+
+  headerIcons: {
+    flexDirection: "row",
+    gap: 18,
+  },
+
+  icon: {
+    color: "#FFFFFF",
+    fontSize: 21,
+  },
+
+  tabs: {
+    flexDirection: "row",
+    paddingHorizontal: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#171720",
+  },
+
+  tab: {
+    color: "#777780",
+    paddingHorizontal: 12,
+    paddingVertical: 14,
+    fontSize: 14,
+  },
+
+  activeTab: {
+    color: "#FFFFFF",
+    borderBottomWidth: 2,
+    borderBottomColor: "#A33CFF",
+  },
+
+  stories: {
+    paddingVertical: 15,
+    paddingLeft: 15,
+  },
+
+  story: {
+    alignItems: "center",
+    marginRight: 16,
+  },
+
+  storyCircle: {
+    width: 62,
+    height: 62,
+    borderRadius: 31,
+    borderWidth: 2,
+    borderColor: "#A33CFF",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#15151F",
+  },
+
+  storyEmoji: {
+    fontSize: 25,
+  },
+
+  storyName: {
+    color: "#FFFFFF",
+    fontSize: 11,
+    marginTop: 5,
+  },
+
+  post: {
+    marginHorizontal: 12,
+    marginBottom: 100,
+    backgroundColor: "#0C0C12",
+    borderRadius: 15,
+    overflow: "hidden",
+  },
+
+  userRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 13,
+  },
+
+  avatar: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: "#242430",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 10,
+  },
+
+  username: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontSize: 14,
+  },
+
+  location: {
+    color: "#777780",
+    fontSize: 11,
+    marginTop: 2,
+  },
+
+  more: {
+    marginLeft: "auto",
+    color: "#FFFFFF",
+    fontSize: 18,
+  },
+
+  photo: {
+    height: 390,
+    backgroundColor: "#5C1B88",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  photoEmoji: {
+    fontSize: 65,
+  },
+
+  photoText: {
+    color: "#FFFFFF",
+    fontSize: 34,
+    fontWeight: "900",
+    marginTop: 8,
+  },
+
+  caption: {
+    color: "#FFFFFF",
+    fontSize: 15,
+    paddingHorizontal: 14,
+    paddingTop: 14,
+  },
+
+  hashtags: {
+    color: "#A94DFF",
+    paddingHorizontal: 14,
+    paddingTop: 5,
+  },
+
+  actions: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 14,
+    gap: 22,
+  },
+
+  action: {
+    color: "#FFFFFF",
+    fontSize: 14,
+  },
+
+  bookmark: {
+    color: "#FFFFFF",
+    marginLeft: "auto",
+    fontSize: 18,
+  },
+
+  bottomNav: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 75,
+    backgroundColor: "#09090F",
+    borderTopWidth: 1,
+    borderTopColor: "#20202A",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+
+  navIcon: {
+    color: "#85858F",
+    fontSize: 21,
+    textAlign: "center",
+  },
+
+  navText: {
+    color: "#85858F",
+    fontSize: 10,
+    textAlign: "center",
+  },
+
+  navActive: {
+    color: "#A33CFF",
+    fontSize: 24,
+    textAlign: "center",
+  },
+
+  navActiveText: {
+    color: "#A33CFF",
+    fontSize: 10,
+    textAlign: "center",
+  },
+
+  plusButton: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: "#8D2FFF",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: -25,
+  },
+
+  plus: {
+    color: "#FFFFFF",
+    fontSize: 32,
+    fontWeight: "300",
+  },
+});
 title: Create a project
 description: Learn how to create a new Expo project.
 hideTOC: true
